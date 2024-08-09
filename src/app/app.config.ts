@@ -1,9 +1,15 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideStore } from '@ngrx/store';
+import { provideEffects } from '@ngrx/effects';
+import { userReducer } from './state/user/user.reducer';
+import { UserEffects } from './state/user/user.effects';
+import { HttpClientModule } from '@angular/common/http';
 
-import { routes } from './app.routes';
-import { provideClientHydration } from '@angular/platform-browser';
+import { importProvidersFrom } from '@angular/core';
 
-export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideClientHydration()]
+export const appConfig = {
+  providers: [
+    importProvidersFrom(HttpClientModule),
+    provideStore({ users: userReducer }),
+    provideEffects([UserEffects]),
+  ],
 };

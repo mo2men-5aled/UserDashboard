@@ -1,0 +1,7 @@
+<header>
+  <h1>User Dashboard</h1>
+  <div class="search" (keyup.enter)="onSearch(searchInput.value)">
+    <input #searchInput type="text" placeholder="Search by ID" />
+    <button (click)="onSearch(searchInput.value)">Search</button>
+  </div>
+</header>

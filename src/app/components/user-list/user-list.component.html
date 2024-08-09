@@ -1,0 +1,15 @@
+<div class="user-list">
+  <app-user-card
+    *ngFor="let user of users$ | async"
+    [user]="user"
+    (userClick)="onUserClick(user.id)"
+  ></app-user-card>
+</div>
+
+<div class="pagination">
+  <button (click)="previousPage()" [disabled]="currentPage <= 1">
+    Previous
+  </button>
+  <span>Page {{ currentPage }}</span>
+  <button (click)="nextPage()">Next</button>
+</div>
